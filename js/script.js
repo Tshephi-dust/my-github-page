@@ -1,13 +1,14 @@
 // PASSWORD
 const galleryApp = document.getElementById('galleryApp');
 const passwordModal = document.getElementById('passwordModal');
-const correctPassword = "bee123";
+const correctPassword = "bee123"; // Change your password
 
 function checkPassword() {
   const input = document.getElementById('passwordInput').value;
   if(input === correctPassword) {
     passwordModal.style.display = "none";
     galleryApp.style.display = "block";
+    renderPhotos();
   } else { alert("Wrong password! Try again."); }
 }
 
@@ -63,7 +64,7 @@ function addComment(photoIndex){
   localStorage.setItem('photos',JSON.stringify(photos));
   input.value='';
   renderComments(photoIndex);
-  showConfetti();
+  alert("Comment added! 🎉"); // Simple confetti alternative
 }
 
 function renderComments(photoIndex){
@@ -86,13 +87,4 @@ function savePhoto(){
   const title = document.getElementById('photoTitle').value.trim();
   const url = document.getElementById('photoURL').value.trim();
   if(!title||!url) return alert("Fill both fields!");
-  photos.push({title,url,likes:0,liked:false,comments:[]});
-  localStorage.setItem('photos',JSON.stringify(photos));
-  document.getElementById('photoTitle').value='';
-  document.getElementById('photoURL').value='';
-  closeModal();
-  renderPhotos();
-}
-
-// CONFETTI
-function showConf
+  photos.push
