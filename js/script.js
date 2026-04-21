@@ -5,12 +5,11 @@ function toggleTheme() {
   btn.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
 }
 
-// Notes - store in localStorage
+// Notes functionality
 function addNote() {
   const input = document.getElementById('noteInput');
   const text = input.value.trim();
   if (!text) return;
-
   const notes = JSON.parse(localStorage.getItem('loveNotes') || '[]');
   notes.push(text);
   localStorage.setItem('loveNotes', JSON.stringify(notes));
@@ -29,7 +28,7 @@ function renderNotes() {
   });
 }
 
-// Memories - dynamic gallery with likes
+// Memories functionality
 let memories = JSON.parse(localStorage.getItem('memories') || '[]');
 
 function renderMemories() {
@@ -55,7 +54,7 @@ function toggleLike(index) {
   renderMemories();
 }
 
-// Modal functionality
+// Modal
 const modal = document.getElementById('memoryModal');
 document.getElementById('addMemoryBtn').onclick = () => modal.style.display = 'flex';
 function closeModal() { modal.style.display = 'none'; }
@@ -63,7 +62,7 @@ function closeModal() { modal.style.display = 'none'; }
 function saveMemory() {
   const title = document.getElementById('memoryTitle').value.trim();
   const image = document.getElementById('memoryImage').value.trim();
-  if(!title || !image) return alert("Please fill all fields!");
+  if (!title || !image) return alert("Please fill all fields!");
   const desc = document.getElementById('memoryDesc').value.trim();
   memories.push({title,image,desc,liked:false});
   localStorage.setItem('memories', JSON.stringify(memories));
