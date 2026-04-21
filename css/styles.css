@@ -1,4 +1,4 @@
-/* RESET & GLOBAL */
+/* RESET */
 * { margin:0; padding:0; box-sizing:border-box; font-family: Arial, Helvetica, sans-serif; }
 body { background:#121212; color:#f5f5f5; min-height:100vh; line-height:1.6; }
 
@@ -15,7 +15,7 @@ header { display:flex; justify-content:space-between; align-items:center; paddin
 
 /* GALLERY */
 .photos { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:15px; margin-top:20px; }
-.photo-card { background:#222; border-radius:12px; padding:10px; text-align:center; cursor:pointer; transition:0.3s; position:relative; }
+.photo-card { background:#222; border-radius:12px; padding:10px; text-align:center; transition:0.3s; position:relative; }
 .photo-card:hover { transform:translateY(-5px); box-shadow:0 10px 20px rgba(0,0,0,0.6); }
 .photo-card img { width:100%; border-radius:8px; }
 .photo-card p { margin-top:8px; font-size:14px; color:#ccc; }
