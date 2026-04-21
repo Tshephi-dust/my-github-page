@@ -3,47 +3,42 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Our Scrapbook</title>
+<title>Our Memories</title>
 <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
-<div class="app">
+<!-- PASSWORD MODAL -->
+<div id="passwordModal" class="modal">
+  <div class="modal-content">
+    <h3>Enter Password to Access Gallery</h3>
+    <input type="password" id="passwordInput" placeholder="Enter password">
+    <button onclick="checkPassword()">Enter</button>
+  </div>
+</div>
 
+<!-- GALLERY APP -->
+<div class="app" id="galleryApp" style="display:none;">
   <header>
-    ❤️ Our Digital Scrapbook
+    ❤️ Our Gallery
     <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
   </header>
 
-  <section class="intro">
-    <h2>Welcome, my love!</h2>
-    <p>This is our private place to relive moments and share memories together. 🌸</p>
-  </section>
-
-  <section class="gallery">
-    <h2>Memories Gallery</h2>
+  <section class="gallery-section">
+    <h2>Our Pictures</h2>
     <div class="photos"></div>
-    <button id="addMemoryBtn">Add Memory</button>
+    <button id="addPhotoBtn">Add Photo</button>
   </section>
-
-  <section class="notes">
-    <h2>Love Notes</h2>
-    <textarea id="noteInput" placeholder="Write a new note..."></textarea>
-    <button onclick="addNote()">Add Note</button>
-    <ul id="notesList"></ul>
-  </section>
-
 </div>
 
-<!-- Memory Modal -->
-<div class="modal" id="memoryModal">
+<!-- ADD PHOTO MODAL -->
+<div class="modal" id="photoModal">
   <div class="modal-content">
     <span class="close" onclick="closeModal()">&times;</span>
-    <h3>Add a Memory</h3>
-    <input type="text" id="memoryTitle" placeholder="Title of memory">
-    <input type="text" id="memoryImage" placeholder="Image URL">
-    <textarea id="memoryDesc" placeholder="Description"></textarea>
-    <button onclick="saveMemory()">Save Memory</button>
+    <h3>Add a Photo</h3>
+    <input type="text" id="photoTitle" placeholder="Title of Photo">
+    <input type="text" id="photoURL" placeholder="Image URL">
+    <button onclick="savePhoto()">Save Photo</button>
   </div>
 </div>
 
