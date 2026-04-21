@@ -1,78 +1,98 @@
-// Dark mode toggle
+// PASSWORD
+const galleryApp = document.getElementById('galleryApp');
+const passwordModal = document.getElementById('passwordModal');
+const correctPassword = "bee123";
+
+function checkPassword() {
+  const input = document.getElementById('passwordInput').value;
+  if(input === correctPassword) {
+    passwordModal.style.display = "none";
+    galleryApp.style.display = "block";
+  } else { alert("Wrong password! Try again."); }
+}
+
+// DARK MODE
 function toggleTheme() {
   document.body.classList.toggle('dark-mode');
   const btn = document.querySelector('.theme-toggle');
   btn.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
 }
 
-// Notes functionality
-function addNote() {
-  const input = document.getElementById('noteInput');
-  const text = input.value.trim();
-  if (!text) return;
-  const notes = JSON.parse(localStorage.getItem('loveNotes') || '[]');
-  notes.push(text);
-  localStorage.setItem('loveNotes', JSON.stringify(notes));
-  input.value = '';
-  renderNotes();
+// PHOTOS DATA
+let photos = JSON.parse(localStorage.getItem('photos') || '[]');
+
+function renderPhotos() {
+  const photosDiv = document.querySelector('.photos');
+  photosDiv.innerHTML = '';
+  photos.forEach((photo,index)=>{
+    const div = document.createElement('div');
+    div.classList.add('photo-card');
+    div.innerHTML = `
+      <img src="${photo.url}" alt="${photo.title}">
+      <p>${photo.title}</p>
+      <button class="like-btn ${photo.liked ? 'liked' : ''}" onclick="toggleLike(${index})">❤️ ${photo.likes||0}</button>
+      <div class="comment-section">
+        <ul class="comment-list" id="commentList-${index}"></ul>
+        <div class="comment-input">
+          <input type="text" placeholder="Add a comment..." id="commentInput-${index}">
+          <button onclick="addComment(${index})">Post</button>
+        </div>
+      </div>
+    `;
+    photosDiv.appendChild(div);
+    renderComments(index);
+  });
 }
 
-function renderNotes() {
-  const notes = JSON.parse(localStorage.getItem('loveNotes') || '[]');
-  const ul = document.getElementById('notesList');
-  ul.innerHTML = '';
-  notes.forEach(note => {
+// LIKES
+function toggleLike(index){
+  if(!photos[index].likes) photos[index].likes = 0;
+  photos[index].liked = !photos[index].liked;
+  photos[index].likes += photos[index].liked ? 1 : -1;
+  localStorage.setItem('photos',JSON.stringify(photos));
+  renderPhotos();
+}
+
+// COMMENTS
+function addComment(photoIndex){
+  const input = document.getElementById(`commentInput-${photoIndex}`);
+  const text = input.value.trim();
+  if(!text) return;
+  if(!photos[photoIndex].comments) photos[photoIndex].comments=[];
+  photos[photoIndex].comments.push(text);
+  localStorage.setItem('photos',JSON.stringify(photos));
+  input.value='';
+  renderComments(photoIndex);
+  showConfetti();
+}
+
+function renderComments(photoIndex){
+  const ul = document.getElementById(`commentList-${photoIndex}`);
+  ul.innerHTML='';
+  const comments = photos[photoIndex].comments||[];
+  comments.forEach(c=>{
     const li = document.createElement('li');
-    li.textContent = note;
+    li.textContent=c;
     ul.appendChild(li);
   });
 }
 
-// Memories functionality
-let memories = JSON.parse(localStorage.getItem('memories') || '[]');
+// MODAL FOR ADD PHOTO
+const modal = document.getElementById('photoModal');
+document.getElementById('addPhotoBtn').onclick = () => modal.style.display='flex';
+function closeModal(){ modal.style.display='none'; }
 
-function renderMemories() {
-  const photosDiv = document.querySelector('.photos');
-  photosDiv.innerHTML = '';
-  memories.forEach((mem, index) => {
-    const div = document.createElement('div');
-    div.classList.add('photo-card');
-    if(mem.liked) div.classList.add('liked');
-    div.innerHTML = `
-      <img src="${mem.image}" alt="${mem.title}">
-      <p>${mem.title}</p>
-      <span class="heart">❤️</span>
-    `;
-    div.addEventListener('click', () => toggleLike(index));
-    photosDiv.appendChild(div);
-  });
-}
-
-function toggleLike(index) {
-  memories[index].liked = !memories[index].liked;
-  localStorage.setItem('memories', JSON.stringify(memories));
-  renderMemories();
-}
-
-// Modal
-const modal = document.getElementById('memoryModal');
-document.getElementById('addMemoryBtn').onclick = () => modal.style.display = 'flex';
-function closeModal() { modal.style.display = 'none'; }
-
-function saveMemory() {
-  const title = document.getElementById('memoryTitle').value.trim();
-  const image = document.getElementById('memoryImage').value.trim();
-  if (!title || !image) return alert("Please fill all fields!");
-  const desc = document.getElementById('memoryDesc').value.trim();
-  memories.push({title,image,desc,liked:false});
-  localStorage.setItem('memories', JSON.stringify(memories));
-  document.getElementById('memoryTitle').value = '';
-  document.getElementById('memoryImage').value = '';
-  document.getElementById('memoryDesc').value = '';
+function savePhoto(){
+  const title = document.getElementById('photoTitle').value.trim();
+  const url = document.getElementById('photoURL').value.trim();
+  if(!title||!url) return alert("Fill both fields!");
+  photos.push({title,url,likes:0,liked:false,comments:[]});
+  localStorage.setItem('photos',JSON.stringify(photos));
+  document.getElementById('photoTitle').value='';
+  document.getElementById('photoURL').value='';
   closeModal();
-  renderMemories();
+  renderPhotos();
 }
 
-// Initialize
-renderNotes();
-renderMemories();
+// CONFETTI
+function showConf
