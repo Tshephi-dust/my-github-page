@@ -1,26 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My First GitHub Page</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Scrapbook</title>
+<link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <header>
-        <h1>Welcome to My Website!</h1>
-    </header>
 
-    <main>
-        <p>This is a simple webpage hosted on GitHub Pages.</p>
-        <p>Here's a picture of a cute cat:</p>
-        <img src="https://placekitten.com/200/300" alt="A cute kitten">
-        
-        <p>Visit <a href="https://github.com">GitHub</a> to learn more about coding.</p>
-    </main>
+<div class="app">
 
-    <footer>
-        <p>&copy; 2026 Keotshephile Dust</p>
-    </footer>
+  <header>
+    ❤️ Our Digital Scrapbook
+    <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+  </header>
 
+  <section class="intro">
+    <h2>Welcome, my love!</h2>
+    <p>This is our private place to relive moments and share memories together. 🌸</p>
+  </section>
+
+  <section class="gallery">
+    <h2>Memories Gallery</h2>
+    <div class="photos">
+      <!-- Memory cards will be dynamically inserted here -->
+    </div>
+    <button id="addMemoryBtn">Add Memory</button>
+  </section>
+
+  <section class="notes">
+    <h2>Love Notes</h2>
+    <textarea id="noteInput" placeholder="Write a new note..."></textarea>
+    <button onclick="addNote()">Add Note</button>
+    <ul id="notesList"></ul>
+  </section>
+
+</div>
+
+<!-- Memory Modal -->
+<div class="modal" id="memoryModal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <h3>Add a Memory</h3>
+    <input type="text" id="memoryTitle" placeholder="Title of memory">
+    <input type="text" id="memoryImage" placeholder="Image URL">
+    <textarea id="memoryDesc" placeholder="Description"></textarea>
+    <button onclick="saveMemory()">Save Memory</button>
+  </div>
+</div>
+
+<script src="js/script.js"></script>
 </body>
 </html>
