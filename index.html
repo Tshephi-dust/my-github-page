@@ -1,47 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Our Memories</title>
-<link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- PASSWORD MODAL -->
-<div id="passwordModal" class="modal">
-  <div class="modal-content">
-    <h3>Enter Password to Access Gallery</h3>
-    <input type="password" id="passwordInput" placeholder="Enter password">
-    <button onclick="checkPassword()">Enter</button>
-  </div>
-</div>
+    <!-- Navbar -->
+    <header>
+        <h1>For My Love</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Me</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="scrapbook.html">Scrapbook</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-<!-- GALLERY APP -->
-<div class="app" id="galleryApp" style="display:none;">
-  <header>
-    ❤️ Our Gallery
-    <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
-  </header>
+    <!-- About Section -->
+    <section class="about">
+        <h2>Our Love Story</h2>
+        <p>From the moment we met, I knew there was something special about you. Our love is filled with laughter, memories, and endless moments of happiness. Here's a little something for you...</p>
+        <div class="about-image">
+            <img src="path/to/your/photo.jpg" alt="Love photo">
+        </div>
+    </section>
 
-  <section class="gallery-section">
-    <h2>Our Pictures</h2>
-    <div class="photos"></div>
-    <button id="addPhotoBtn">Add Photo</button>
-  </section>
-</div>
+    <!-- Footer -->
+    <footer>
+        <p>Created with love for you 💖</p>
+    </footer>
 
-<!-- ADD PHOTO MODAL -->
-<div class="modal" id="photoModal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal()">&times;</span>
-    <h3>Add a Photo</h3>
-    <input type="text" id="photoTitle" placeholder="Title of Photo">
-    <input type="text" id="photoURL" placeholder="Image URL">
-    <button onclick="savePhoto()">Save Photo</button>
-  </div>
-</div>
-
-<script src="script.js"></script>
 </body>
 </html>
