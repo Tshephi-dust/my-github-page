@@ -1,40 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dust Collection | Clothing Store</title>
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-    <!-- Navbar -->
-    <header>
-        <h1>For My Love</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About Me</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="scrapbook.html">Scrapbook</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+<header class="header">
+  <h1>🖤 Dust Collection</h1>
 
-    <!-- About Section -->
-    <section class="about">
-        <h2>Our Love Story</h2>
-        <p>From the moment we met, I knew there was something special about you. Our love is filled with laughter, memories, and endless moments of happiness. Here's a little something for you...</p>
-        <div class="about-image">
-            <img src="path/to/your/photo.jpg" alt="Love photo">
-        </div>
-    </section>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#shop">Shop</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
 
-    <!-- Footer -->
-    <footer>
-        <p>Created with love for you 💖</p>
-    </footer>
+  <div class="cart" onclick="toggleCart()">
+    🛒 <span id="cartCount">0</span>
+  </div>
+</header>
 
+<!-- HERO -->
+<section class="hero">
+  <h2>Streetwear That Defines You 🔥</h2>
+  <p>Premium clothing for modern style</p>
+  <button onclick="document.getElementById('shop').scrollIntoView()">Shop Now</button>
+</section>
+
+<!-- PRODUCTS -->
+<section id="shop" class="products">
+
+  <div class="card">
+    <img src="https://via.placeholder.com/300">
+    <h3>Black Hoodie</h3>
+    <p>P350</p>
+    <button onclick="addToCart('Black Hoodie',350)">Add to Cart</button>
+  </div>
+
+  <div class="card">
+    <img src="https://via.placeholder.com/300">
+    <h3>Oversized T-Shirt</h3>
+    <p>P200</p>
+    <button onclick="addToCart('T-Shirt',200)">Add to Cart</button>
+  </div>
+
+  <div class="card">
+    <img src="https://via.placeholder.com/300">
+    <h3>Street Cargo Pants</h3>
+    <p>P400</p>
+    <button onclick="addToCart('Pants',400)">Add to Cart</button>
+  </div>
+
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="about">
+  <h2>About Us</h2>
+  <p>
+    Dust Collection is a modern streetwear brand focused on premium,
+    minimal, and bold fashion. We design clothing that speaks confidence.
+  </p>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+  <h2>Contact</h2>
+  <p>Email: dustcollection@gmail.com</p>
+  <p>Instagram: @dustcollection</p>
+</section>
+
+<!-- CART -->
+<div id="cartBox" class="cartBox">
+  <h2>Your Cart</h2>
+  <ul id="cartItems"></ul>
+  <p>Total: P<span id="total">0</span></p>
+  <button onclick="checkout()">Checkout</button>
+  <button onclick="toggleCart()">Close</button>
+</div>
+
+<script src="app.js"></script>
 </body>
 </html>
